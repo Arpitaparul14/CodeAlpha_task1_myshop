@@ -91,11 +91,16 @@ def checkout(request):
     if not order:
         return redirect('cart')
     if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        pincode = request.POST.get('pincode')
         order.status = 'confirmed'
         total = sum(item.price * item.quantity for item in order.items.all())
         order.total = total
         order.save()
-        messages.success(request, '✅ Order placed! Cash on Delivery confirmed.')
+        messages.success(request, f'✅ Order placed! Delivering to {full_name}, {address}, {city} - {pincode}. Phone: {phone}')
         return redirect('order_history')
     items = order.items.all()
     total = sum(item.price * item.quantity for item in items)

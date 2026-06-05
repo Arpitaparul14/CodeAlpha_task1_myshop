@@ -16,17 +16,41 @@
         </div>
     </div>
     <div style="background:white; border-radius:15px; padding:1.5rem; box-shadow:0 3px 15px rgba(0,0,0,0.08)">
-        <h3 style="margin-bottom:1rem; border-bottom:2px solid #f39c12; padding-bottom:0.5rem">Payment Method</h3>
-        <div style="background:#f8f9fa; border-radius:10px; padding:1.2rem; margin-bottom:1.5rem; border:2px solid #2ecc71">
-            <p style="font-size:1.1rem; font-weight:bold; color:#2ecc71">💵 Cash on Delivery (COD)</p>
-            <p style="color:#666; font-size:13px; margin-top:0.5rem">Pay when your order arrives at your doorstep.</p>
-        </div>
-        <div style="background:#fff3cd; border-radius:10px; padding:1rem; margin-bottom:1.5rem">
-            <p style="font-size:13px; color:#856404">📦 Estimated delivery: 3-5 business days</p>
-        </div>
+        <h3 style="margin-bottom:1rem; border-bottom:2px solid #f39c12; padding-bottom:0.5rem">Delivery Details</h3>
         <form method="POST">
             {% csrf_token %}
-            <button type="submit" class="btn btn-success" style="width:100%; padding:1rem; font-size:1.1rem; border-radius:10px">
+            <div style="margin-bottom:1rem">
+                <label style="display:block; margin-bottom:0.4rem; font-weight:bold">Full Name</label>
+                <input type="text" name="full_name" required placeholder="Enter your full name"
+                style="width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:8px; font-size:14px; outline:none">
+            </div>
+            <div style="margin-bottom:1rem">
+                <label style="display:block; margin-bottom:0.4rem; font-weight:bold">Phone Number</label>
+                <input type="text" name="phone" required placeholder="Enter your phone number"
+                style="width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:8px; font-size:14px; outline:none">
+            </div>
+            <div style="margin-bottom:1rem">
+                <label style="display:block; margin-bottom:0.4rem; font-weight:bold">Address</label>
+                <textarea name="address" required placeholder="Enter your full address"
+                style="width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:8px; font-size:14px; outline:none; height:80px; resize:none"></textarea>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem">
+                <div>
+                    <label style="display:block; margin-bottom:0.4rem; font-weight:bold">City</label>
+                    <input type="text" name="city" required placeholder="City"
+                    style="width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:8px; font-size:14px; outline:none">
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom:0.4rem; font-weight:bold">Pincode</label>
+                    <input type="text" name="pincode" required placeholder="Pincode"
+                    style="width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:8px; font-size:14px; outline:none">
+                </div>
+            </div>
+            <div style="background:#f8f9fa; border-radius:10px; padding:1rem; margin-bottom:1rem; border:2px solid #2ecc71">
+                <p style="font-size:1rem; font-weight:bold; color:#2ecc71">💵 Cash on Delivery (COD)</p>
+                <p style="color:#666; font-size:13px; margin-top:0.3rem">Pay when your order arrives.</p>
+            </div>
+            <button type="submit" class="btn btn-success" style="width:100%; padding:1rem; font-size:1rem; border-radius:10px">
                 ✅ Confirm Order — Pay on Delivery
             </button>
         </form>
