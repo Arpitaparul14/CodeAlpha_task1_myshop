@@ -1,0 +1,20 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); max-width:450px; margin:auto">
+    <h2 style="margin-bottom:1.5rem; text-align:center">Login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div style="margin-bottom:1rem">
+            <label style="display:block; margin-bottom:0.4rem; font-weight:bold">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <p style="color:red; font-size:13px">{{ field.errors.0 }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn" style="width:100%; padding:0.8rem; font-size:1rem">Login</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem">No account? <a href="/register/">Register here</a></p>
+</div>
+{% endblock %}

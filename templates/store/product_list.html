@@ -1,0 +1,35 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2 style="margin-bottom:1.5rem; font-size:1.8rem">
+    {% if request.GET.q %}
+        Search results for "{{ request.GET.q }}"
+    {% else %}
+        🛍️ All Products
+    {% endif %}
+</h2>
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:1.5rem">
+    {% for product in products %}
+    <div style="background:white; border-radius:15px; overflow:hidden; box-shadow:0 3px 15px rgba(0,0,0,0.08); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:100%; height:200px; object-fit:cover;">
+        {% else %}
+            <div style="width:100%; height:200px; background:linear-gradient(135deg,#667eea,#764ba2); display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;">🛍️</div>
+        {% endif %}
+        <div style="padding:1.2rem">
+            <h3 style="margin-bottom:0.4rem; font-size:1.1rem">{{ product.name }}</h3>
+            <p style="color:#888; font-size:13px; margin-bottom:0.8rem">{{ product.description|truncatewords:12 }}</p>
+            <p style="color:#f39c12; font-weight:bold; font-size:1.3rem; margin-bottom:1rem">₹{{ product.price }}</p>
+            <div style="display:flex; gap:0.5rem">
+                <a href="/product/{{ product.pk }}/" class="btn" style="flex:1; text-align:center">View Details</a>
+                <a href="/cart/add/{{ product.pk }}/" class="btn btn-success" style="flex:1; text-align:center">Add 🛒</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <div style="grid-column:1/-1; text-align:center; padding:3rem; color:#888">
+            <p style="font-size:3rem">😕</p>
+            <p style="font-size:1.2rem">No products found. <a href="/">View all products</a></p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

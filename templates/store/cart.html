@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2 style="margin-bottom:1.5rem">Your Cart 🛒</h2>
+{% if items %}
+<div style="background:white; border-radius:10px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.1)">
+    <table style="width:100%; border-collapse:collapse">
+        <thead>
+            <tr style="border-bottom:2px solid #eee">
+                <th style="padding:0.8rem; text-align:left">Product</th>
+                <th style="padding:0.8rem; text-align:center">Quantity</th>
+                <th style="padding:0.8rem; text-align:right">Price</th>
+                <th style="padding:0.8rem; text-align:right">Subtotal</th>
+                <th style="padding:0.8rem"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr style="border-bottom:1px solid #eee">
+                <td style="padding:0.8rem">{{ item.product.name }}</td>
+                <td style="padding:0.8rem; text-align:center">{{ item.quantity }}</td>
+                <td style="padding:0.8rem; text-align:right">₹{{ item.price }}</td>
+                <td style="padding:0.8rem; text-align:right">₹{{ item.price|floatformat:2 }}</td>
+                <td style="padding:0.8rem; text-align:right">
+                    <a href="/cart/remove/{{ item.pk }}/" class="btn btn-danger">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="text-align:right; margin-top:1.5rem">
+        <h3 style="margin-bottom:1rem">Total: ₹{{ total }}</h3>
+        <a href="/checkout/" class="btn">Proceed to Checkout</a>
+    </div>
+</div>
+{% else %}
+    <p>Your cart is empty. <a href="/">Continue shopping</a></p>
+{% endif %}
+{% endblock %}

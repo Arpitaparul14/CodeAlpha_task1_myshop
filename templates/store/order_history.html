@@ -1,0 +1,31 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2 style="margin-bottom:1.5rem">My Orders</h2>
+{% if orders %}
+    {% for order in orders %}
+    <div style="background:white; border-radius:10px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:1.5rem">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem">
+            <h3>Order #{{ order.id }}</h3>
+            <span style="background:#2ecc71; color:white; padding:0.3rem 0.8rem; border-radius:20px; font-size:14px">{{ order.status }}</span>
+        </div>
+        <p style="color:#666; margin-bottom:1rem">Placed on: {{ order.created_at|date:"d M Y" }}</p>
+        {% for item in order.items.all %}
+        <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #eee">
+            <span>{{ item.product.name }} x {{ item.quantity }}</span>
+            <span>₹{{ item.price }}</span>
+        </div>
+        {% endfor %}
+        <div style="text-align:right; margin-top:1rem">
+            <strong>Total: ₹{{ order.total }}</strong>
+            {% if order.status == 'confirmed' %}
+<a href="/orders/cancel/{{ order.id }}/" class="btn btn-danger" style="margin-top:1rem; display:inline-block">Cancel Order</a>
+{% elif order.status == 'cancelled' %}
+    <span style="color:#e74c3c; font-weight:bold">❌ Cancelled</span>
+{% endif %}
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No orders yet. <a href="/">Start shopping!</a></p>
+{% endif %}
+{% endblock %}
