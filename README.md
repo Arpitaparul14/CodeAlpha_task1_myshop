@@ -6,6 +6,7 @@ Built with Django (Python) as CodeAlpha Internship Task 1
 - Shopping cart
 - User registration & login
 - Order processing with Cash on Delivery
+- Customer delivery details (Name, Phone, Address, City, Pincode)
 - Order history & cancel order
 - Search bar
 - Admin panel
