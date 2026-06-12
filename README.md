@@ -13,6 +13,20 @@ Built with Django (Python) as CodeAlpha Internship Task 1
 - Mobile responsive
 
 ## How to run
-1. Install Django: pip install django
-2. Run: python manage.py runserver
-3. Open: http://127.0.0.1:8000
+1. Clone the repository
+2. Install dependencies:
+   pip install django pillow
+
+3. Run migrations:
+   python manage.py migrate
+
+4. Run the server:
+   python manage.py runserver
+
+5. Open browser at:
+   http://127.0.0.1:8000
+
+6. Register a new account and start!
+8. 6. Go to /admin/ to add products
+   Username: admin
+   Password: admin123
