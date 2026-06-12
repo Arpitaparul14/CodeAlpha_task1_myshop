@@ -27,6 +27,6 @@ Built with Django (Python) as CodeAlpha Internship Task 1
    http://127.0.0.1:8000
 
 6. Register a new account and start!
-8. 6. Go to /admin/ to add products
+7. Go to /admin/ to add products
    Username: admin
    Password: admin123
